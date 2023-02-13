@@ -10,7 +10,6 @@ export default function Home() {
       <main className="md:container md:mx-auto">
         <section className=" text-black">
           <NavBar />
-
           <div>
             {/* hero section */}
 
