@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   return (
     <Layout>
-      <main className="md:container md:mx-auto">
+      <main className="md:container md:mx-auto font-titillium">
       <section className=' text-black'>
         <NavBar/>
       </section>
