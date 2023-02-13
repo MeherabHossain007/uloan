@@ -6,12 +6,12 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
-    <>
-      <main>
-        <Layout>
-          <NavBar/>
-        </Layout>
+    <Layout>
+      <main className="md:container md:mx-auto">
+      <section className=' text-black'>
+        <NavBar/>
+      </section>
       </main>
-    </>
+    </Layout>
   )
 }
