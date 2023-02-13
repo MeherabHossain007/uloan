@@ -17,7 +17,7 @@ export default function NavBar() {
       </div>
       <div>
         <div className="flex-none">
-          <Button colorScheme="blue" variant="ghost">
+          <Button textColor={'#23A6F0'} colorScheme= 'blue' variant="ghost">
             Login
           </Button>
         </div>
