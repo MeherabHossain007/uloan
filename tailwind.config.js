@@ -11,7 +11,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'titillium': ['Titillium Web']
+        'titillium': ['Titillium Web', 'sans']
       }
     }
   },
