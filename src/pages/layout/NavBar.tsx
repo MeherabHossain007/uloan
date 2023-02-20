@@ -16,9 +16,12 @@ export default function NavBar() {
         />
       </div>
       <div>
-        <div className="flex-none">
-          <Button textColor={'#23A6F0'} colorScheme= 'blue' variant="ghost">
+        <div className="flex-none space-x-5">
+          <Button textColor={"#23A6F0"} colorScheme="blue" variant="ghost">
             Login
+          </Button>
+          <Button bg={"#23A6F0"} textColor={"white"} _hover={{bg:'blue.400'}}variant="solid">
+            Become a Member
           </Button>
         </div>
       </div>

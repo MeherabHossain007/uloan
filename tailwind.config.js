@@ -13,9 +13,9 @@ module.exports = {
       fontFamily: {
         'titillium': ['Titillium Web', 'sans']
       }
-    }
+    },
   },
-  plugins: [require("daisyui")],
+  plugins: [require("daisyui"), require('tailwindcss-gradient'),],
 
   daisyui: {
     styled: true,
