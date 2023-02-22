@@ -20,6 +20,8 @@
     "daisyui": "^2.50.0",
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",
+    "flowbite": "^1.6.3",
+    "flowbite-react": "^0.3.8",
     "framer-motion": "^9.0.2",
     "next": "13.1.6",
     "npm": "^9.4.2",
