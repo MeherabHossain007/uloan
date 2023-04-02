@@ -20,7 +20,9 @@ export default function LoanReq() {
             <div>
               <InputGroup>
                 <Input w={500} type="tel" placeholder="Enter Amount" />
-                <InputRightAddon children={<SearchIcon />} />
+                <InputRightAddon>
+                  <SearchIcon />
+                </InputRightAddon>
               </InputGroup>
             </div>
             <ReqDialogue />
