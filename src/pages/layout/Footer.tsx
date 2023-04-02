@@ -64,7 +64,7 @@ export default function Footer() {
                 </div>
               </nav>
               <nav
-                className="col-span-2 md:col-span-4 lg:col-span-3"
+                className="col-span-2 md:col-span-4 lg:col-span-3 ml-28"
                 aria-labelledby="footer-docs-dark"
               >
                 <h3
@@ -76,7 +76,7 @@ export default function Footer() {
                 <ul>
                   <li className="mb-2 leading-6">
                     <a
-                      href="javascript:void(0)"
+                      href="#!"
                       className="transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600"
                     >
                       About Us
@@ -84,7 +84,7 @@ export default function Footer() {
                   </li>
                   <li className="mb-2 leading-6">
                     <a
-                      href="javascript:void(0)"
+                      href="#!"
                       className="transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600"
                     >
                       Carrier
@@ -92,7 +92,7 @@ export default function Footer() {
                   </li>
                   <li className="mb-2 leading-6">
                     <a
-                      href="javascript:void(0)"
+                      href="#!"
                       className="transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600"
                     >
                       We are hiring
@@ -100,7 +100,7 @@ export default function Footer() {
                   </li>
                   <li className="mb-2 leading-6">
                     <a
-                      href="javascript:void(0)"
+                      href="#!"
                       className="transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600"
                     >
                       Blog
@@ -109,7 +109,7 @@ export default function Footer() {
                 </ul>
               </nav>
               <nav
-                className="col-span-2 md:col-span-4 lg:col-span-3"
+                className="col-span-2 md:col-span-4 lg:col-span-3 ml-28"
                 aria-labelledby="footer-about-dark"
               >
                 <h3
@@ -121,7 +121,7 @@ export default function Footer() {
                 <ul>
                   <li className="mb-2 leading-6">
                     <a
-                      href="javascript:void(0)"
+                      href="#!"
                       className="transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600"
                     >
                       Business Marketing
@@ -129,7 +129,7 @@ export default function Footer() {
                   </li>
                   <li className="mb-2 leading-6">
                     <a
-                      href="javascript:void(0)"
+                      href="#!"
                       className="transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600"
                     >
                       User Analytic
@@ -137,7 +137,7 @@ export default function Footer() {
                   </li>
                   <li className="mb-2 leading-6">
                     <a
-                      href="javascript:void(0)"
+                      href="#!"
                       className="transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600"
                     >
                       Live Chat
@@ -145,7 +145,7 @@ export default function Footer() {
                   </li>
                   <li className="mb-2 leading-6">
                     <a
-                      href="javascript:void(0)"
+                      href="#!"
                       className="transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600"
                     >
                       Unlimited Support
@@ -154,7 +154,7 @@ export default function Footer() {
                 </ul>
               </nav>
               <nav
-                className="col-span-2 md:col-span-4 lg:col-span-3"
+                className="col-span-2 md:col-span-4 lg:col-span-3 ml-28"
                 aria-labelledby="footer-get-in-touch-dark"
               >
                 <h3
@@ -166,7 +166,7 @@ export default function Footer() {
                 <ul>
                   <li className="mb-2 leading-6">
                     <a
-                      href="javascript:void(0)"
+                      href="#!"
                       className="transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600"
                     >
                       IOS & Android
@@ -174,7 +174,7 @@ export default function Footer() {
                   </li>
                   <li className="mb-2 leading-6">
                     <a
-                      href="javascript:void(0)"
+                      href="#!"
                       className="transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600"
                     >
                       Watch a Demo
@@ -182,7 +182,7 @@ export default function Footer() {
                   </li>
                   <li className="mb-2 leading-6">
                     <a
-                      href="javascript:void(0)"
+                      href="#!"
                       className="transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600"
                     >
                       Customers
@@ -190,7 +190,7 @@ export default function Footer() {
                   </li>
                   <li className="mb-2 leading-6">
                     <a
-                      href="javascript:void(0)"
+                      href="#!"
                       className="transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600"
                     >
                       API
@@ -202,7 +202,7 @@ export default function Footer() {
           </div>
         </div>
         {/*      <!-- Sub Footer --> */}
-        <div className="py-6   bg-[#FAFAFA]">
+        <div className="py-6 bg-[#eeeeee]">
           <p className="text-center text-black text-sm font-thin">
             Made With Love By Midnight Coders All Right Reserved{" "}
           </p>

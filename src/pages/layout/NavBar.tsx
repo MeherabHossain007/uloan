@@ -1,8 +1,9 @@
 import { Button } from "@chakra-ui/react";
 import Image from "next/image";
-import React from "react";
+import { useRouter } from "next/router";
 
 export default function NavBar() {
+  const router = useRouter()
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
@@ -17,7 +18,10 @@ export default function NavBar() {
       </div>
       <div>
         <div className="flex-none space-x-5">
-          <Button textColor={"#23A6F0"} colorScheme="blue" variant="ghost">
+          <Button textColor={"#23A6F0"} colorScheme="blue" variant="ghost" onClick={(e) =>{
+            e.preventDefault();
+            router.push('/auth/auth')
+          }}>
             Login
           </Button>
           <Button bg={"#23A6F0"} textColor={"white"} _hover={{bg:'blue.400'}}variant="solid">
