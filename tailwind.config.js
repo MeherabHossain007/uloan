@@ -13,6 +13,9 @@ module.exports = {
     extend: {
       fontFamily: {
         'titillium': ['Titillium Web', 'sans']
+      },
+      backgroundImage: {
+        'hero-pattern': "url('https://fxbyhlpaaetzdijcnzkf.supabase.co/storage/v1/object/public/sourceimage/16b.jpg')",
       }
     },
   },
