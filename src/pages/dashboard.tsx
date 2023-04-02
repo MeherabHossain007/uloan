@@ -6,6 +6,7 @@ import SideBar from "./components/SideBar";
 import DashButton from "./components/DashButton";
 import DashHome from "./components/DashHome";
 import LoanReq from "./components/LoanReq";
+import Profile from "./components/Profile";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -129,6 +130,17 @@ export default function Dashboard() {
       </SideBar>
       {active == 0 && <DashHome />}
       {active == 1 && <LoanReq />}
+      {active == 3 && (
+        <Profile
+          title={"Your Profile"}
+          name={"Sadab Uz Zaman"}
+          type="Student"
+          mobile="017XXXXXXXX"
+          email="sadab69@gmail.com"
+          uni="United International Univarsiry"
+          genders="male"
+        />
+      )}
     </>
   );
 }
