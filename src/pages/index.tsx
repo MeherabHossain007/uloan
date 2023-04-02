@@ -7,14 +7,14 @@ import Footer from "./layout/Footer";
 export default function Home() {
   return (
     <Layout>
-      <main className="md:container md:mx-auto font-titillium px-12">
+      <main className="md:container md:mx-auto px-12">
         <section className=" text-black justify-center">
           <NavBar />
           {/* Hero Section */}
           <div>
             <div className="mt-20 flex flex-row justify-between content-center">
               <div>
-                <p className="text-5xl font-black leading-tight">
+                <p className="text-5xl font-bold leading-tight">
                   Connect, Borrow, <br /> Succeed with Student- <br />{" "}
                   to-Student Loans.
                 </p>
@@ -41,7 +41,7 @@ export default function Home() {
             </div>
             {/* Features & Benefits of Loans */}
             <div className="mt-32 flex flex-col justify-center">
-              <p className="font-black text-[43px] text-center uppercase">
+              <p className="font-bold text-[43px] text-center uppercase">
                 Features & Benefits of Loans
               </p>
               <p className="text-center text-lg mt-2 text-gray-500">
@@ -143,7 +143,7 @@ export default function Home() {
 
             <div className="mt-32">
               <div className="">
-                <p className="font-black text-[43px] text-center uppercase">
+                <p className="font-bold text-[43px] text-center uppercase">
                   About Education Loan
                 </p>
                 <p className="text-center text-lg mt-2 text-gray-500">
@@ -193,7 +193,7 @@ export default function Home() {
 
             {/* rates &  charges */}
             <div className="mt-32  ">
-              <p className="font-black text-[43px] text-center uppercase">
+              <p className="font-bold text-[43px] text-center uppercase">
                 EDUCATION INTEREST RATES & CHARGES
               </p>
               <p className="text-center text-lg mt-2 text-gray-500">
@@ -202,32 +202,32 @@ export default function Home() {
               </p>
 
               <div className="mt-20 ">
-                <div className="flex flex-row justify-between items-center">
+                <div className="flex flex-row justify-between items-center content-center">
                   <div className="space-y-5">
                     {/* 1 */}
                     <div className="border-2  w-[225px] h-[110px] rounded-3xl flex flex-col justify-center px-10 ">
-                      <p className="font-black text-2xl">0.00%</p>
+                      <p className="font-bold text-2xl">0.00%</p>
                       <p className="text-gray-400">Min apr</p>
                     </div>
 
                     {/* 2 */}
 
                     <div className="border-2  w-[225px] h-[110px] rounded-3xl flex flex-col justify-center px-10 ">
-                      <p className="font-black text-2xl">17.75%</p>
+                      <p className="font-bold text-2xl">17.75%</p>
                       <p className="text-gray-400">Max apr</p>
                     </div>
 
                     {/* 3 */}
 
                     <div className="border-2  w-[225px] h-[110px] rounded-3xl flex flex-col justify-center px-10 ">
-                      <p className="font-black text-2xl">12.5%</p>
+                      <p className="font-bold text-2xl">12.5%</p>
                       <p className="text-gray-400">Min apr</p>
                     </div>
                   </div>
 
                   <div>
-                    <div className="divide-y w-[900px] border rounded-3xl overflow-x-auto">
-                      <div className="py-3 px-14 flex justify-between bg-[#626ADD]">
+                    <div className="divide-y w-[1000px] border rounded-3xl overflow-x-auto">
+                      <div className="py-3 px-14 p flex justify-between bg-[#626ADD]">
                         <p className="text-white font-semibold text-lg">
                           Descripton chargers
                         </p>
@@ -235,7 +235,7 @@ export default function Home() {
                           Education Loan
                         </p>
                       </div>
-                      <div className="py-3 px-14 flex justify-between ">
+                      <div className="py-3 px-14 p flex justify-between ">
                         <p className="text-lg">
                           Loan Processing Charges
                           <span className="text-red-600">*</span>
@@ -244,26 +244,26 @@ export default function Home() {
                           Maximum up to 1%
                         </p>
                       </div>
-                      <div className="py-3 px-14 flex justify-between">
+                      <div className="py-3 px-14 p flex justify-between">
                         <p className="text-lg">
                           Prepayment charges
                           <span className="text-red-600">*</span>
                         </p>
                         <p className="mx-10 text-gray-400 text-lg">Nil</p>
                       </div>
-                      <div className="py-3 px-14 flex justify-between">
+                      <div className="py-3 px-14 p flex justify-between">
                         <p className="text-lg">No Due Certificate</p>
                         <p className="mx-10 text-gray-400">Nil</p>
                       </div>
-                      <div className="py-3 px-14 flex justify-between">
+                      <div className="py-3 px-14 p flex justify-between">
                         <p className="text-lg">Solvency Certificate</p>
                         <p className="mx-10 text-gray-400">Nil</p>
                       </div>
-                      <div className="py-3 px-14 flex justify-between">
+                      <div className="py-3 px-14 p flex justify-between">
                         <p className="text-lg">
                           Penalty Interest on delayed / overdue EMI
                         </p>
-                        <p className="-mx-10 text-gray-400 text-lg">
+                        <p className="-mx-10 pr-5 text-gray-400 text-lg">
                           Write here your % of delayed payment
                         </p>
                       </div>
@@ -276,7 +276,7 @@ export default function Home() {
             {/* testimonial */}
 
             <div className="mt-32">
-              <p className="font-black text-[43px] text-center uppercase">
+              <p className="font-bold text-[43px] text-center uppercase">
                 SOME OF OUR AWESOME TESTIMONIALS
               </p>
               <p className="text-center text-lg mt-2 text-gray-500">
@@ -290,7 +290,7 @@ export default function Home() {
             {/* Just take  minutes for your loan */}
 
             <div className="mt-32">
-              <p className="font-black text-[43px] text-center uppercase">
+              <p className="font-bold text-[43px] text-center uppercase">
                 Just take minutes for your loan
               </p>
               <p className="text-center text-lg mt-2 text-gray-500">
@@ -302,11 +302,11 @@ export default function Home() {
             {/* Get In Touch */}
 
             <div className="mt-32">
-              <div className="border h-48 bg-gradient-to-r from-[#18A6F5] to-[#4D43D6] flex flex-row justify-center items-center space-x-96 my-10">
+              <div className="border h-48 bg-gradient-to-r from-[#18A6F5] to-[#4D43D6] flex flex-row justify-between items-center space-x-96 px-20 py-10">
                 {/* 1 */}
                 <div className="space-y-2">
                   <p className="text-3xl font-bold text-white">Get In Touch</p>
-                  <p className="text-xs text-white">
+                  <p className="text-sm text-white">
                     Get instant support and solutions with our live chat.
                     Connect with us now!
                   </p>
@@ -324,7 +324,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <Footer/>
+          <Footer />
           <div>
             <script
               src="//code.tidio.co/xm0umtoxjpxqm8yuk9w9hlwypijcj8nz.js"
