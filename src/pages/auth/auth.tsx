@@ -3,7 +3,8 @@ import { supabase } from "lib/supabaseClient";
 import { useEffect, useState } from "react";
 import TextInput from "../components/TextInput";
 import Image from "next/image";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
+import { type } from "os";
 
 type User = {
   id?: string;
@@ -13,6 +14,7 @@ type User = {
     phone?: string;
     nid?: string;
     uni?: string;
+    type?: string;
     uid?: string;
   };
 };
@@ -27,6 +29,7 @@ function Auth() {
     nid: "",
     uni: "",
     uid: "",
+    type: "",
     password: "",
   });
 
@@ -44,6 +47,7 @@ function Auth() {
           phone: user.user_metadata?.phone,
           nid: user.user_metadata?.nid,
           uni: user.user_metadata?.uni,
+          type: user.user_metadata?.type,
           uid: user.user_metadata?.uid,
         },
       ]);
@@ -51,7 +55,7 @@ function Auth() {
         console.log(userError);
       }
     });
-  },[users]) 
+  }, [users]);
 
   const handleChange = (event: { target: { name: any; value: any } }) => {
     const { name, value } = event.target;
@@ -68,10 +72,10 @@ function Auth() {
       password: password,
     });
 
-    if(data.session != null){
-      router.push('/dashboard');
+    if (data.session != null) {
+      router.push("/dashboard");
     }
-    if(error){
+    if (error) {
       console.log(error);
     }
   };
@@ -79,7 +83,7 @@ function Auth() {
   const handleSignUp = async (event: any) => {
     event.preventDefault();
 
-    const { name, email, password, phone, nid, uni, uid } = formData;
+    const { name, email, password, phone, nid, uni, uid, type } = formData;
 
     const { data, error } = await supabase.auth.signUp({
       email: email,
@@ -91,6 +95,7 @@ function Auth() {
           nid: nid,
           uni: uni,
           uid: uid,
+          type: type,
         },
       },
     });
@@ -102,6 +107,7 @@ function Auth() {
         user_metadata: data.user?.user_metadata,
       };
       setUsers((prevState) => [...prevState, newUser]);
+      setFormStep(0);
     }
     if (error) {
       console.log(error);
@@ -195,7 +201,7 @@ function Auth() {
                 {formStep == 1 && (
                   <>
                     <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                      Sign up as member
+                      Sign up as Member
                     </h1>
                     <form
                       className="space-y-4 md:space-y-6"
@@ -226,6 +232,7 @@ function Auth() {
                         name="password"
                         placeholder="••••••••"
                         value={formData.password}
+                        type='password'
                         required={true}
                         onChange={handleChange}
                       />
@@ -288,19 +295,36 @@ function Auth() {
                           onChange={handleChange}
                         />
                       </HStack>
+                      <HStack w={'full'}>
+                        <TextInput
+                          label="University Id"
+                          name="uid"
+                          placeholder="11193XXXX"
+                          value={formData.uid}
+                          required={true}
+                          onChange={handleChange}
+                        />
+                        <div>
+                          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Type
+                          </label>
+                          <select
+                            onChange={handleChange}
+                            id="type"
+                            name="type"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          >
+                            <option selected>Choose your type</option>
+                            <option value="Student">Student</option>
+                            <option value="Teacher">Teacher</option>
+                          </select>
+                        </div>
+                      </HStack>
                       <TextInput
                         label="University"
                         name="uni"
                         placeholder="United International University"
                         value={formData.uni}
-                        required={true}
-                        onChange={handleChange}
-                      />
-                      <TextInput
-                        label="University Id"
-                        name="uid"
-                        placeholder="11193XXXX"
-                        value={formData.uid}
                         required={true}
                         onChange={handleChange}
                       />
