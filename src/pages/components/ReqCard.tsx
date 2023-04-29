@@ -1,16 +1,19 @@
 import { type } from "os";
 import React from "react";
+import OfferDialogue from "./OfferDialogue";
 
 type ReqCardProps = {
-  rnumber: string;
-  name: string;
-  type: string;
-  uni: string;
-  amount: string;
-  interest: string;
+  uid?: string;
+  rnumber?: number;
+  name?: string;
+  type?: string;
+  uni?: string;
+  amount?: string;
+  interest?: string;
 };
 
 export default function ReqCard({
+  uid,
   rnumber,
   name,
   type,
@@ -39,9 +42,10 @@ export default function ReqCard({
             </div>
           </div>
           <div className="mt-4">
-            <button className=" font-bold text-sm rounded-md bg-green-400 text-white px-3 py-1 ">
+            {/* <button className=" font-bold text-sm rounded-md bg-green-400 text-white px-3 py-1 ">
               Offer Money
-            </button>
+            </button> */}
+            <OfferDialogue id={rnumber} uid={uid}/>
           </div>
         </div>
       </div>

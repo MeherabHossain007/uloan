@@ -1,70 +1,44 @@
-import { AddIcon } from "@chakra-ui/icons";
 import {
-  Button,
-  FormControl,
-  FormLabel,
-  HStack,
-  Input,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
   ModalOverlay,
-  Select,
-  Textarea,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  Button,
+  Modal,
   useDisclosure,
 } from "@chakra-ui/react";
+import React, { useState } from "react";
 import TextInput from "./TextInput";
 import { supabase } from "lib/supabaseClient";
-import { useState } from "react";
-import handler from "../api/hello";
 
-type User = {
-  id?: string;
-  name?: string;
-  uni?: string;
-  type?: string;
+type Offer = {
+  id?: number;
+  uid?: string;
 };
-
-export default function ReqDialogue({ id, name, uni, type }: User) {
+export default function OfferDialogue({ id, uid }: Offer) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [amount, setAmount] = useState("");
   const [interest, setInterest] = useState("");
 
   const handleSubmit = async () => {
-    console.log("hello");
+    console.log(id);
     const { data, error } = await supabase
-      .from("requests")
-      .insert([
-        {
-          uid: id,
-          name: name,
-          uni: uni,
-          type: type,
-          amount: amount,
-          interest: interest,
-          accept: "false",
-        },
-      ]);
-      if (data) {
-        console.log(data);
-      }
-      if (error) {
-        console.log(error);
-      }
+      .from("offer")
+      .insert([{ id:Number(id), uid: uid, interest: interest}]);
   };
+
   return (
     <>
       <Button
         onClick={onOpen}
-        bg={"#23A6F0"}
+        bg={"green.400"}
+        size={"sm"}
         textColor={"white"}
-        _hover={{ bg: "blue.400" }}
+        _hover={{ bg: "green.500" }}
         variant="solid"
       >
-        Make request
+        Offer Money
       </Button>
       <Modal
         closeOnOverlayClick={false}
@@ -74,16 +48,9 @@ export default function ReqDialogue({ id, name, uni, type }: User) {
       >
         <ModalOverlay backdropFilter="blur(10px)" />
         <ModalContent>
-          <ModalHeader>Submit Request</ModalHeader>
+          <ModalHeader>Make an offer</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <TextInput
-              onChange={(e) => {
-                setAmount(e.target.value);
-              }}
-              value={amount}
-              label={"Request Amount"}
-            />
             <TextInput
               onChange={(e) => {
                 setInterest(e.target.value);
@@ -97,9 +64,9 @@ export default function ReqDialogue({ id, name, uni, type }: User) {
               Close
             </Button>
             <Button
-              bg={"#23A6F0"}
+              bg={"green.400"}
               textColor={"white"}
-              _hover={{ bg: "blue.400" }}
+              _hover={{ bg: "green.500" }}
               variant="solid"
               onClick={handleSubmit}
             >

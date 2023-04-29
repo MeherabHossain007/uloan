@@ -6,11 +6,45 @@ import {
   InputGroup,
   InputRightAddon,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReqCard from "./ReqCard";
 import ReqDialogue from "./ReqDialogue";
+import { supabase } from "lib/supabaseClient";
 
-export default function LoanReq() {
+type User = {
+  id?: string;
+  email?: string;
+  name?: string;
+  uni?: string;
+  type?: string;
+};
+
+type Request = {
+  id?: number;
+  uid?: string;
+  name?: string;
+  uni?: string;
+  type?: string;
+  amount?: string;
+  interest?: string;
+  accept?: string;
+};
+
+export default function LoanReq({ id, email, name, uni, type }: User) {
+  const [data, setData] = useState<Request[]>([]);
+
+  useEffect(() => {
+    const getRequests = async () => {
+      let { data: requests, error } = await supabase
+        .from("requests")
+        .select("*");
+
+      if (requests) {
+        setData(requests);
+      }
+    };
+    getRequests();
+  }, []);
   return (
     <>
       <div className="p-4 sm:ml-64">
@@ -25,33 +59,20 @@ export default function LoanReq() {
                 </InputRightAddon>
               </InputGroup>
             </div>
-            <ReqDialogue />
+            <ReqDialogue id={id} name={name} uni={uni} type={type} />
           </div>
           <div className="grid grid-cols-1 grid-rows-1">
-            <ReqCard
-              rnumber={"1"}
-              name={"Meherab Hossain"}
-              type={"Student"}
-              uni={"United International University"}
-              amount={"5000"}
-              interest={"2"}
-            />
-            <ReqCard
-              rnumber={"2"}
-              name={"Sadab Uz Zaman"}
-              type={"Student"}
-              uni={"United International University"}
-              amount={"10000"}
-              interest={"3"}
-            />
-            <ReqCard
-              rnumber={"3"}
-              name={"Md.Yusuf"}
-              type={"Student"}
-              uni={"United International University"}
-              amount={"20000"}
-              interest={"4"}
-            />
+            {data.map((data) => (
+              <ReqCard
+                uid={data.uid}
+                rnumber={data.id}
+                name={data.name}
+                type={data.type}
+                uni={data.uni}
+                amount={data.amount}
+                interest={data.interest}
+              />
+            ))}
           </div>
         </div>
       </div>

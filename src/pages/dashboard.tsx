@@ -162,7 +162,15 @@ export default function Dashboard() {
         </DashButton>
       </SideBar>
       {active == 0 && <DashHome />}
-      {active == 1 && <LoanReq />}
+      {active == 1 && (
+        <LoanReq
+          id={user}
+          email={email}
+          name={data.name}
+          uni={data.uni}
+          type={data.type}
+        />
+      )}
       {active == 3 && (
         <Profile
           title={"Your Profile"}
