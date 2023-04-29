@@ -89,7 +89,7 @@ export default function ReqDialogue({ id, name, uni, type }: User) {
                 setInterest(e.target.value);
               }}
               value={interest}
-              label={"Interest Rate"}
+              label={"Maximum Interest Rate"}
             />
           </ModalBody>
           <ModalFooter>

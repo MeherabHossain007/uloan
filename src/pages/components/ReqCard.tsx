@@ -1,6 +1,7 @@
 import { type } from "os";
 import React from "react";
 import OfferDialogue from "./OfferDialogue";
+import { Button, HStack } from "@chakra-ui/react";
 
 type ReqCardProps = {
   uid?: string;
@@ -36,16 +37,24 @@ export default function ReqCard({
         <div className="flex flex-col justify-between h-full items-end">
           <span className="font-bold text-lg ">Request Amount</span>
           <div className="flex space-x-2 items-center justify-center">
-            <div className="text-2xl ">${amount}</div>
-            <div className=" flex font-bold text-sm items-center justify-center rounded-md bg-slate-200 h-6 w-9 p-1">
-              {interest}%
+            <div className="text-2xl ">BDT {amount}</div>
+            <div className=" flex font-bold text-sm items-center justify-center rounded-md bg-slate-200 h-6 w-14 p-1">
+              0 - {interest}%
             </div>
           </div>
           <div className="mt-4">
-            {/* <button className=" font-bold text-sm rounded-md bg-green-400 text-white px-3 py-1 ">
-              Offer Money
-            </button> */}
-            <OfferDialogue id={rnumber} uid={uid}/>
+            <HStack>
+              <OfferDialogue id={rnumber} uid={uid} />{" "}
+              <Button
+                bg={"#23A6F0"}
+                size={"sm"}
+                textColor={"white"}
+                _hover={{ bg: "blue.400" }}
+                variant="solid"
+              >
+                Accept Without Interest
+              </Button>
+            </HStack>
           </div>
         </div>
       </div>

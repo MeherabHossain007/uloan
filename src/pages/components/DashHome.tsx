@@ -1,15 +1,32 @@
 import React from "react";
 import ProCard from "./ProCard";
 import Card from "./Card";
+import { type } from "os";
 
-export default function DashHome() {
+type Profile = {
+  name: string;
+  type: string;
+  uni: string;
+  mobile: string;
+  email: string;
+}
+
+type Request = {
+  id: string;
+  uid: string;
+  amount: string;
+  interest: string;
+  date: string;
+}
+
+export default function DashHome({name,type,uni,mobile,email}:Profile) {
   return (
     <div className="p-4 sm:ml-64">
       <div className="p-6 border-gray-200  rounded-lg dark:border-gray-700 mt-14">
         <div className="grid grid-cols-4 grid-rows-1 gap-4 mb-6">
           <div className=" col-span-2">
             <Card
-              title={"Your Active Loan"}
+              title={"My Loan"}
               balance={"Meherab Hossain"}
               image={""}
               flag={0}
@@ -20,7 +37,7 @@ export default function DashHome() {
           </div>
           <div className=" col-span-2 row-span-2">
             <Card
-              title={"Your Given Loan"}
+              title={"My Given Loan"}
               balance={"Meherab Hossain"}
               image={""}
               flag={0}
@@ -73,11 +90,11 @@ export default function DashHome() {
           <div className=" col-span-2">
             <ProCard
               title={"Your Profile"}
-              name={"Sadab Uz Zaman"}
-              type="Student"
-              mobile="017XXXXXXXX"
-              email="sadab69@gmail.com"
-              uni="United International Univarsiry"
+              name={name}
+              type={type}
+              mobile={mobile}
+              email={email}
+              uni={uni}
               genders="male"
             />
           </div>

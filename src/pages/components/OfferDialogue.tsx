@@ -38,7 +38,7 @@ export default function OfferDialogue({ id, uid }: Offer) {
         _hover={{ bg: "green.500" }}
         variant="solid"
       >
-        Offer Money
+        Offer Interest
       </Button>
       <Modal
         closeOnOverlayClick={false}

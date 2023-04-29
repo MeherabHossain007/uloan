@@ -63,6 +63,7 @@ export default function LoanReq({ id, email, name, uni, type }: User) {
           </div>
           <div className="grid grid-cols-1 grid-rows-1">
             {data.map((data) => (
+              // eslint-disable-next-line react/jsx-key
               <ReqCard
                 uid={data.uid}
                 rnumber={data.id}
