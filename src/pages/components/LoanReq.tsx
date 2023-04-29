@@ -67,6 +67,7 @@ export default function LoanReq({ id, email, name, uni, type }: User) {
               // eslint-disable-next-line react/jsx-key
               data.id == id ? (
                 <ReqCard
+                  key={data.id}
                   flag={"0"}
                   date={data.date}
                   uid={data.uid}
@@ -80,6 +81,7 @@ export default function LoanReq({ id, email, name, uni, type }: User) {
               ) : (
                 <ReqCard
                   flag={"1"}
+                  key={data.id}
                   date={data.date}
                   uid={data.uid}
                   rnumber={data.id}
