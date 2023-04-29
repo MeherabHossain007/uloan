@@ -4,7 +4,6 @@ import OfferDialogue from "./OfferDialogue";
 import { Button, HStack } from "@chakra-ui/react";
 
 type ReqCardProps = {
-  flag?: string;
   uid?: string;
   rnumber?: string;
   name?: string;
@@ -16,7 +15,6 @@ type ReqCardProps = {
 };
 
 export default function ReqCard({
-  flag = "0",
   date,
   uid,
   rnumber,
@@ -52,7 +50,6 @@ export default function ReqCard({
             </div>
           </div>
           <div className="mt-4">
-            {flag == "0" && (
               <HStack>
                 <OfferDialogue id={rnumber} uid={uid} />
                 <Button
@@ -65,7 +62,6 @@ export default function ReqCard({
                   Accept Without Interest
                 </Button>
               </HStack>
-            )}
           </div>
         </div>
       </div>

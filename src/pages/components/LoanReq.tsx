@@ -38,7 +38,8 @@ export default function LoanReq({ id, email, name, uni, type }: User) {
     const getRequests = async () => {
       let { data: requests, error } = await supabase
         .from("requests")
-        .select("*");
+        .select("*")
+        .neq("uid", id);
 
       if (requests) {
         setData(requests);
@@ -63,36 +64,20 @@ export default function LoanReq({ id, email, name, uni, type }: User) {
             <ReqDialogue id={id} name={name} uni={uni} type={type} />
           </div>
           <div className="grid grid-cols-1 grid-rows-1">
-            {data.map((data) =>
+            {data.map((data) => (
               // eslint-disable-next-line react/jsx-key
-              data.id == id ? (
-                <ReqCard
-                  key={data.id}
-                  flag={"0"}
-                  date={data.date}
-                  uid={data.uid}
-                  rnumber={data.id}
-                  name={data.name}
-                  type={data.type}
-                  uni={data.uni}
-                  amount={data.amount}
-                  interest={data.interest}
-                />
-              ) : (
-                <ReqCard
-                  flag={"1"}
-                  key={data.id}
-                  date={data.date}
-                  uid={data.uid}
-                  rnumber={data.id}
-                  name={data.name}
-                  type={data.type}
-                  uni={data.uni}
-                  amount={data.amount}
-                  interest={data.interest}
-                />
-              )
-            )}
+              <ReqCard
+                key={data.id}
+                date={data.date}
+                uid={data.uid}
+                rnumber={data.id}
+                name={data.name}
+                type={data.type}
+                uni={data.uni}
+                amount={data.amount}
+                interest={data.interest}
+              />
+            ))}
           </div>
         </div>
       </div>

@@ -151,6 +151,7 @@ function Auth() {
                       <TextInput
                         label="Password"
                         name="password"
+                        type="password"
                         placeholder="••••••••"
                         value={formData.password}
                         required={true}
