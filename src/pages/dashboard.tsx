@@ -127,17 +127,50 @@ export default function Dashboard() {
             className="w-6 h-6 inline-block align-middle mr-2"
           />
         </DashButton>
+        <DashButton
+          name={"My Requests"}
+          onClick={() => {
+            setActive(3);
+          }}
+        >
+          <img
+            src="https://img.icons8.com/dotty/80/null/request-money.png"
+            className="w-6 h-6 inline-block align-middle mr-2"
+          />
+        </DashButton>
+        <DashButton
+          name={"Pending Requests"}
+          onClick={() => {
+            setActive(3);
+          }}
+        >
+          <img
+            src="https://img.icons8.com/material-outlined/48/null/data-pending.png"
+            className="w-6 h-6 inline-block align-middle mr-2"
+          />
+        </DashButton>
+        <DashButton
+          name={"Acepted Requests"}
+          onClick={() => {
+            setActive(3);
+          }}
+        >
+          <img
+            src="https://img.icons8.com/windows/32/null/checked--v2.png"
+            className="w-6 h-6 inline-block align-middle mr-2"
+          />
+        </DashButton>
       </SideBar>
       {active == 0 && <DashHome />}
       {active == 1 && <LoanReq />}
       {active == 3 && (
         <Profile
           title={"Your Profile"}
-          name={"Sadab Uz Zaman"}
-          type="Student"
-          mobile="017XXXXXXXX"
-          email="sadab69@gmail.com"
-          uni="United International Univarsiry"
+          name={data.name}
+          type={data.type}
+          mobile={data.phone}
+          email={email}
+          uni={data.uni}
           genders="male"
         />
       )}
