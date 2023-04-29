@@ -14,7 +14,7 @@ import TextInput from "./TextInput";
 import { supabase } from "lib/supabaseClient";
 
 type Offer = {
-  id?: number;
+  id?: string;
   uid?: string;
 };
 export default function OfferDialogue({ id, uid }: Offer) {
@@ -25,7 +25,7 @@ export default function OfferDialogue({ id, uid }: Offer) {
     console.log(id);
     const { data, error } = await supabase
       .from("offer")
-      .insert([{ id:Number(id), uid: uid, interest: interest}]);
+      .insert([{ rid: id, uid: uid, interest: interest, status: "pending" }]);
   };
 
   return (

@@ -20,7 +20,7 @@ export default function TextInput({
 }: IProps) {
   return (
     <div>
-      <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+      <label className="block mt-2 text-sm font-medium text-gray-900 dark:text-white">
         {label}
       </label>
       <input

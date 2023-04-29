@@ -20,7 +20,7 @@ type User = {
 };
 
 type Request = {
-  id?: number;
+  id?: string;
   uid?: string;
   name?: string;
   uni?: string;
@@ -28,6 +28,7 @@ type Request = {
   amount?: string;
   interest?: string;
   accept?: string;
+  date?: string;
 };
 
 export default function LoanReq({ id, email, name, uni, type }: User) {
@@ -62,18 +63,34 @@ export default function LoanReq({ id, email, name, uni, type }: User) {
             <ReqDialogue id={id} name={name} uni={uni} type={type} />
           </div>
           <div className="grid grid-cols-1 grid-rows-1">
-            {data.map((data) => (
+            {data.map((data) =>
               // eslint-disable-next-line react/jsx-key
-              <ReqCard
-                uid={data.uid}
-                rnumber={data.id}
-                name={data.name}
-                type={data.type}
-                uni={data.uni}
-                amount={data.amount}
-                interest={data.interest}
-              />
-            ))}
+              data.id == id ? (
+                <ReqCard
+                  flag={"0"}
+                  date={data.date}
+                  uid={data.uid}
+                  rnumber={data.id}
+                  name={data.name}
+                  type={data.type}
+                  uni={data.uni}
+                  amount={data.amount}
+                  interest={data.interest}
+                />
+              ) : (
+                <ReqCard
+                  flag={"1"}
+                  date={data.date}
+                  uid={data.uid}
+                  rnumber={data.id}
+                  name={data.name}
+                  type={data.type}
+                  uni={data.uni}
+                  amount={data.amount}
+                  interest={data.interest}
+                />
+              )
+            )}
           </div>
         </div>
       </div>

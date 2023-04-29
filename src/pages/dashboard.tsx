@@ -7,6 +7,8 @@ import DashButton from "./components/DashButton";
 import DashHome from "./components/DashHome";
 import LoanReq from "./components/LoanReq";
 import Profile from "./components/Profile";
+import PendingReq from "./components/PendingReq";
+import MyReq from "./components/MyReq";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -130,7 +132,7 @@ export default function Dashboard() {
         <DashButton
           name={"My Requests"}
           onClick={() => {
-            setActive(3);
+            setActive(4);
           }}
         >
           <img
@@ -141,7 +143,7 @@ export default function Dashboard() {
         <DashButton
           name={"Pending Requests"}
           onClick={() => {
-            setActive(3);
+            setActive(5);
           }}
         >
           <img
@@ -152,7 +154,7 @@ export default function Dashboard() {
         <DashButton
           name={"Acepted Requests"}
           onClick={() => {
-            setActive(3);
+            setActive(6);
           }}
         >
           <img
@@ -163,6 +165,7 @@ export default function Dashboard() {
       </SideBar>
       {active == 0 && (
         <DashHome
+          id={user}
           name={data.name}
           type={data.type}
           uni={data.uni}
@@ -190,6 +193,8 @@ export default function Dashboard() {
           genders="male"
         />
       )}
+      {active == 4 && <MyReq id={user} />}
+      {active == 5 && <PendingReq id={user} />}
     </>
   );
 }
