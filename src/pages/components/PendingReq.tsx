@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import ReqCard from "./ReqCard";
 import ReqDialogue from "./ReqDialogue";
 import { supabase } from "lib/supabaseClient";
+import ReqCardM from "./ReqCardM";
 
 type Profile = {
   id?: string;
@@ -94,7 +95,7 @@ export default function PendingReq({ id }: Profile) {
           <div className="grid grid-cols-1 grid-rows-1">
             {data.map((data) => (
               // eslint-disable-next-line react/jsx-key
-              <ReqCard
+              <ReqCardM
                 date={data.date}
                 uid={data.uid}
                 rnumber={data.id}

@@ -6,6 +6,7 @@ import { type } from "os";
 import ReqCard from "./ReqCard";
 import ReqDialogue from "./ReqDialogue";
 import { supabase } from "lib/supabaseClient";
+import ReqCardM from "./ReqCardM";
 
 type Profile = {
   id?: string;
@@ -25,6 +26,7 @@ type Request = {
 
 export default function MyReq({ id }: Profile) {
   const [data, setData] = useState<Request[]>([]);
+  const [offer, setOffer] = useState<any | null>([]);
 
   useEffect(() => {
     const getRequests = async () => {
@@ -43,7 +45,26 @@ export default function MyReq({ id }: Profile) {
       }
     };
     getRequests();
+    getOffers();
   }, [id]);
+
+  const getOffers = () => {
+    data.map(async (data) => {
+      let { data: requests, error } = await supabase
+        .from("offer")
+        .select("*")
+        .eq("id", data.id);
+
+      if (requests) {
+        console.log(requests);
+        setOffer(requests);
+      }
+
+      if (error) {
+        console.log(error);
+      }
+    });
+  };
 
   return (
     <>
@@ -65,7 +86,7 @@ export default function MyReq({ id }: Profile) {
           <div className="grid grid-cols-1 grid-rows-1">
             {data.map((data) => (
               // eslint-disable-next-line react/jsx-key
-              <ReqCard
+              <ReqCardM
                 date={data.date}
                 uid={data.uid}
                 rnumber={data.id}

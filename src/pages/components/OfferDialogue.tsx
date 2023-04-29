@@ -26,6 +26,11 @@ export default function OfferDialogue({ id, uid }: Offer) {
     const { data, error } = await supabase
       .from("offer")
       .insert([{ rid: id, uid: uid, interest: interest, status: "pending" }]);
+
+    const { data: request, error:reqerror } = await supabase
+      .from("requests")
+      .update({ accept: "Pending" })
+      .eq("id", id);
   };
 
   return (

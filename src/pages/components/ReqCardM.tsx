@@ -13,9 +13,10 @@ type ReqCardProps = {
   amount?: string;
   interest?: string;
   date?: string;
+  ointerest?: string;
 };
 
-export default function ReqCard({
+export default function ReqCardM({
   date,
   uid,
   rnumber,
@@ -24,18 +25,8 @@ export default function ReqCard({
   uni,
   amount,
   interest,
+  ointerest,
 }: ReqCardProps) {
-  
-  const handleSubmit = async () => {
-    const { data, error } = await supabase
-      .from("offer")
-      .insert([{ rid: rnumber, uid: uid, interest: '0', status: "pending" }]);
-
-    const { data: request, error: reqerror } = await supabase
-      .from("requests")
-      .update({ accept: "Pending" })
-      .eq("id", rnumber);
-  };
   return (
     <div className="border-2 flex w-full bg-white rounded-3xl justify-between items-center px-6 mt-6">
       <div className="flex w-full justify-between py-4">
@@ -61,20 +52,28 @@ export default function ReqCard({
               0 - {interest}%
             </div>
           </div>
-          <div className="mt-4">
-            <HStack>
-              <OfferDialogue id={rnumber} uid={uid} />
+          <div className=" flex mt-4 gap-2">
+            {ointerest && (
               <Button
-              onClick={handleSubmit}
-                bg={"#23A6F0"}
+                disabled
+                bg={"green.400"}
                 size={"sm"}
                 textColor={"white"}
-                _hover={{ bg: "blue.400" }}
+                _hover={{ bg: "green.500" }}
                 variant="solid"
               >
-                Accept Without Interest
+                Offer {ointerest} Interest
               </Button>
-            </HStack>
+            )}
+            <Button
+              bg={"#23A6F0"}
+              size={"sm"}
+              textColor={"white"}
+              _hover={{ bg: "blue.400" }}
+              variant="solid"
+            >
+              Accept Without Interest
+            </Button>
           </div>
         </div>
       </div>
