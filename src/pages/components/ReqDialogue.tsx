@@ -1,5 +1,9 @@
 import { AddIcon } from "@chakra-ui/icons";
 import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  AlertTitle,
   Button,
   FormControl,
   FormLabel,
@@ -34,6 +38,7 @@ export default function ReqDialogue({ id, name, uni, type }: User) {
   const [interest, setInterest] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
+  const [isloading, setIsLoading] = useState(false);
 
   const handleSubmit = async () => {
     console.log("hello");
@@ -50,9 +55,10 @@ export default function ReqDialogue({ id, name, uni, type }: User) {
       },
     ]);
     if (data) {
-      console.log(data);
+      setIsLoading(true);
     }
     if (error) {
+      setIsLoading(false);
       console.log(error);
     }
   };
@@ -124,6 +130,7 @@ export default function ReqDialogue({ id, name, uni, type }: User) {
               Close
             </Button>
             <Button
+              isLoading={isloading}
               bg={"#23A6F0"}
               textColor={"white"}
               _hover={{ bg: "blue.400" }}

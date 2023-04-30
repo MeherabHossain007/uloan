@@ -92,11 +92,10 @@ export default function Card({
       )}
       {card == 2 && (
         <div className="flex w-full h-full bg-gradient-120 from-[#18A6F5] to-[#4D43D6] rounded-3xl justify-between items-center px-6">
-          <div className="divide-y divide-solid space-y-2 mb-2 w-full h-full">
             <div className="flex w-full justify-between h-full py-5">
               <div>
                 <div className=" font-bold text-lg text-white">{title}</div>
-                <div className=" text-3xl font-light text-white">{balance}</div>
+                <div className=" text-3xl mt-2 font-light text-white">{name}</div>
                 <div className=" font-semibold text-base text-white">
                   {type}
                 </div>
@@ -109,7 +108,7 @@ export default function Card({
                       Total Amount
                     </span>
                     <div className="text-3xl ">
-                      <span className="text-white">$15,000</span>
+                      <span className="text-white mt-2">{balance}</span>
                     </div>
                   </div>
                   <div className="mb-2">
@@ -120,34 +119,6 @@ export default function Card({
                 </div>
               </div>
             </div>
-            <div className="flex w-full justify-between h-full py-5">
-              <div>
-                <div className=" font-bold text-lg text-white">{title}</div>
-                <div className=" text-3xl font-light text-white">{balance}</div>
-                <div className=" font-semibold text-base text-white">
-                  {type}
-                </div>
-                <div className=" font-semibold text-base text-white">{uni}</div>
-              </div>
-              <div>
-                <div className="flex flex-col justify-between h-full items-end gap-1 ">
-                  <div>
-                    <span className="font-bold text-lg text-white">
-                      Total Amount
-                    </span>
-                    <div className="text-3xl ">
-                      <span className="text-white">$15,000</span>
-                    </div>
-                  </div>
-                  <div className="mb-2">
-                    <span className="text-white font-bold text-sm rounded-md bg-white/20 px-3 py-1 ">
-                      #C7456YU
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       )}
       {card == 3 && (

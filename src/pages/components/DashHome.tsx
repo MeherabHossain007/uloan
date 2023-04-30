@@ -26,6 +26,14 @@ type Request = {
   date?: string;
 };
 
+type OfferData = {
+  id: string;
+  uid: string;
+  rid: string;
+  status: string;
+  interest: string;
+};
+
 export default function DashHome({
   id,
   name,
@@ -35,6 +43,8 @@ export default function DashHome({
   email,
 }: Profile) {
   const [data, setData] = useState<any | null>([]);
+  const [req, setReq] = useState<any | null>([]);
+  const [offer, setOffer] = useState<any | null>([]);
 
   useEffect(() => {
     const getRequests = async () => {
@@ -44,10 +54,26 @@ export default function DashHome({
         .eq("uid", id)
         .single();
 
+      let { data, error: dataError } = await supabase
+        .from("requests")
+        .select("*");
+
+      const { data: offers, error: offerError } = await supabase
+        .from("offer")
+        .select("*")
+        .neq("uid", id)
+        .like("status", "accepted")
+
+      if (offers) {
+        setOffer(offers);
+      }
+      if (data) {
+        setReq(data);
+      }
       if (requests) {
-        console.log(requests);
         setData(requests);
       }
+
       if (error) {
         console.log(id);
         console.log(error);
@@ -75,15 +101,24 @@ export default function DashHome({
             />
           </div>
           <div className=" col-span-2 row-span-2">
-            <Card
-              title={"My Given Loan"}
-              balance={"Meherab Hossain"}
-              image={""}
-              flag={0}
-              card={2}
-              type={"Student"}
-              uni={"United International University"}
-            />
+            {offer &&
+              offer.map((offer: { rid: any }) =>
+                req.map(
+                  (req: { id: any }) =>
+                    req.id === offer.rid && (
+                      <Card
+                        title={"My Given Loan"}
+                        name={data.name}
+                        balance={"Meherab Hossain"}
+                        image={""}
+                        flag={0}
+                        card={2}
+                        type={"Student"}
+                        uni={"United International University"}
+                      />
+                    ) 
+                )
+              )}
           </div>
           <div className=" col-span-2">
             <Card

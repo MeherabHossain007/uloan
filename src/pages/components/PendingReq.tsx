@@ -33,7 +33,8 @@ export default function PendingReq({ id }: Profile) {
       let { data: requests, error } = await supabase
         .from("offer")
         .select("*")
-        .eq("uid", id);
+        .eq("uid", id)
+        .like('status', 'pending')
 
       if (requests) {
         console.log(requests);
@@ -104,6 +105,7 @@ export default function PendingReq({ id }: Profile) {
                 uni={data.uni}
                 amount={data.amount}
                 interest={data.interest}
+                status={offer.status}
               />
             ))}
           </div>

@@ -9,6 +9,7 @@ import LoanReq from "./components/LoanReq";
 import Profile from "./components/Profile";
 import PendingReq from "./components/PendingReq";
 import MyReq from "./components/MyReq";
+import AcceptReq from "./components/AcceptReq";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -195,6 +196,7 @@ export default function Dashboard() {
       )}
       {active == 4 && <MyReq id={user} />}
       {active == 5 && <PendingReq id={user} />}
+      {active == 6 && <AcceptReq id={user} />}
     </>
   );
 }

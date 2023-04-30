@@ -14,6 +14,7 @@ type ReqCardProps = {
   interest?: string;
   date?: string;
   ointerest?: string;
+  status?: string;
 };
 
 export default function ReqCardM({
@@ -26,7 +27,19 @@ export default function ReqCardM({
   amount,
   interest,
   ointerest,
+  status,
 }: ReqCardProps) {
+  const handleSubmit = async () => {
+    const { data, error } = await supabase
+      .from("offer")
+      .update({ status: "accepted" })
+      .eq("rid", rnumber);
+
+    const { data: request, error: reqerror } = await supabase
+      .from("requests")
+      .update({ accept: "Active" })
+      .eq("id", rnumber);
+  };
   return (
     <div className="border-2 flex w-full bg-white rounded-3xl justify-between items-center px-6 mt-6">
       <div className="flex w-full justify-between py-4">
@@ -53,7 +66,7 @@ export default function ReqCardM({
             </div>
           </div>
           <div className=" flex mt-4 gap-2">
-            {ointerest && (
+            {ointerest && status != "accepted" && (
               <Button
                 disabled
                 bg={"green.400"}
@@ -62,18 +75,32 @@ export default function ReqCardM({
                 _hover={{ bg: "green.500" }}
                 variant="solid"
               >
-                Offer {ointerest} Interest
+                Offered {ointerest}% Interest
               </Button>
             )}
-            <Button
-              bg={"#23A6F0"}
-              size={"sm"}
-              textColor={"white"}
-              _hover={{ bg: "blue.400" }}
-              variant="solid"
-            >
-              Accept Without Interest
-            </Button>
+            {ointerest && status != "accepted" && (
+              <Button
+                onClick={handleSubmit}
+                bg={"#23A6F0"}
+                size={"sm"}
+                textColor={"white"}
+                _hover={{ bg: "blue.400" }}
+                variant="solid"
+              >
+                Accept
+              </Button>
+            )}
+            {status == "accepted" && (
+              <Button
+                bg={"green.400"}
+                size={"sm"}
+                textColor={"white"}
+                _hover={{ bg: "green.400" }}
+                variant="solid"
+              >
+                Accepted
+              </Button>
+            )}
           </div>
         </div>
       </div>

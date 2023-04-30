@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { InputGroup, Input, InputRightAddon, Button } from "@chakra-ui/react";
 import Image from "next/image";
 import { type } from "os";
+import React, { useEffect, useState } from "react";
 import ReqCard from "./ReqCard";
 import ReqDialogue from "./ReqDialogue";
 import { supabase } from "lib/supabaseClient";
@@ -24,16 +24,36 @@ type Request = {
   date?: string;
 };
 
-export default function MyReq({ id }: Profile) {
+export default function AcceptReq({ id }: Profile) {
   const [data, setData] = useState<Request[]>([]);
   const [offer, setOffer] = useState<any | null>([]);
 
   useEffect(() => {
-    const getRequests = async () => {
+    const getOffers = async () => {
+      let { data: requests, error } = await supabase
+        .from("offer")
+        .select("*")
+        .eq("uid", id)
+        .like("status", "accepted");
+
+      if (requests) {
+        console.log(requests);
+        setOffer(requests);
+      }
+      if (error) {
+        console.log(id);
+        console.log(error);
+      }
+    };
+    getOffers();
+  }, [id]);
+
+  const getRequests = () => {
+    offer.map(async (offer: { rid: any }) => {
       let { data: requests, error } = await supabase
         .from("requests")
         .select("*")
-        .eq("uid", id);
+        .in("id", [offer.rid]);
 
       if (requests) {
         console.log(requests);
@@ -41,27 +61,7 @@ export default function MyReq({ id }: Profile) {
       }
 
       if (error) {
-        console.log(error);
-      }
-    };
-    getRequests();
-    getOffers();
-  }, [id,data]);
-
-  const getOffers = () => {
-    data.map(async (data) => {
-      let { data: requests, error } = await supabase
-        .from("offer")
-        .select("*")
-        .eq("rid", data.id)
-        .single()
-
-      if (requests) {
-        console.log(requests);
-        setOffer(requests);
-      }
-
-      if (error) {
+        console.log(offer.rid);
         console.log(error);
       }
     });
@@ -72,17 +72,26 @@ export default function MyReq({ id }: Profile) {
       <div className="p-4 sm:ml-64">
         <div className="p-6 divide-y divide-gray-200 rounded-lg  mt-14">
           <div className="flex justify-between items-center mb-6">
-            <div className="flex gap-7 items-center">
+            <div className="flex gap-5 items-center">
               <div className=" text-lg">Pending Requests</div>
               <Image
                 src={
-                  "https://fxbyhlpaaetzdijcnzkf.supabase.co/storage/v1/object/public/sourceimage/money-bag.png"
+                  "https://fxbyhlpaaetzdijcnzkf.supabase.co/storage/v1/object/public/sourceimage/debt.png"
                 }
                 alt={""}
-                height={40}
-                width={40}
+                height={60}
+                width={60}
               />
             </div>
+            <Button
+              onClick={getRequests}
+              bg={"#23A6F0"}
+              textColor={"white"}
+              _hover={{ bg: "blue.400" }}
+              variant="solid"
+            >
+              Load request
+            </Button>
           </div>
           <div className="grid grid-cols-1 grid-rows-1">
             {data.map((data) => (
@@ -96,7 +105,6 @@ export default function MyReq({ id }: Profile) {
                 uni={data.uni}
                 amount={data.amount}
                 interest={data.interest}
-                ointerest={offer.interest}
                 status={offer.status}
               />
             ))}
