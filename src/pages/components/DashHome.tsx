@@ -54,22 +54,17 @@ export default function DashHome({
         .eq("uid", id)
         .single();
 
-      let { data, error: dataError } = await supabase
-        .from("requests")
-        .select("*");
-
       const { data: offers, error: offerError } = await supabase
         .from("offer")
         .select("*")
         .neq("uid", id)
         .like("status", "accepted")
+        .single();
 
       if (offers) {
         setOffer(offers);
       }
-      if (data) {
-        setReq(data);
-      }
+
       if (requests) {
         setData(requests);
       }
@@ -79,8 +74,20 @@ export default function DashHome({
         console.log(error);
       }
     };
+    const getReq = async () => {
+      let { data, error: dataError } = await supabase
+        .from("requests")
+        .select("*")
+        .eq("uid", offer.uid)
+        .single();
+
+      if (data) {
+        setReq(data);
+      }
+    };
     getRequests();
-  }, [id]);
+    getReq();
+  }, [setReq, id, offer.uid]);
 
   return (
     <div className="p-4 sm:ml-64">
@@ -100,34 +107,57 @@ export default function DashHome({
               uni={data.uni}
             />
           </div>
-          <div className=" col-span-2 row-span-2">
-            {offer &&
-              offer.map((offer: { rid: any }) =>
-                req.map(
-                  (req: { id: any }) =>
-                    req.id === offer.rid && (
-                      <Card
-                        title={"My Given Loan"}
-                        name={data.name}
-                        balance={"Meherab Hossain"}
-                        image={""}
-                        flag={0}
-                        card={2}
-                        type={"Student"}
-                        uni={"United International University"}
-                      />
-                    ) 
-                )
-              )}
+          <div className=" col-span-2">
+            <Card
+              key={req.id}
+              title={"My Given Loan"}
+              name={req.name}
+              balance={req.amount}
+              image={""}
+              flag={0}
+              card={2}
+              type={req.type}
+              uni={req.uni}
+              id={req.id}
+            />
           </div>
           <div className=" col-span-2">
             <Card
               title={"Due Date"}
-              balance={"March 28"}
+              date={req.created_at}
+              status={data.date}
+              balance={data.amount}
+              id={data.id}
               image={""}
               flag={0}
               card={3}
             />
+          </div>
+          <div className=" col-span-2">
+            <div className="flex w-full h-full bg-gradient-120 from-[#7f18f5] to-[#d62ef8] rounded-3xl justify-between items-center px-6">
+              <div className="flex w-full justify-between h-full py-5">
+                <div>
+                  <div className=" font-bold text-lg text-white">Payment</div>
+                  <div className=" text-3xl font-light text-white">
+                    BDT {data.amount}
+                  </div>
+                  <div className="mb-2 mt-3">
+                    <span className="text-white font-bold text-sm rounded-md bg-white/20 px-3 py-1 ">
+                      #ULN0{data.id}
+                    </span>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex flex-col justify-center h-full items-end gap-1 ">
+                    <div className="mb-2 mt-3">
+                      <span className="text-white font-bold text-base rounded-md bg-white/20 px-3 py-1 ">
+                        PAY NOW
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div className="grid grid-cols-3 gap-4 mb-6">

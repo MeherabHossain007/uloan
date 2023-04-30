@@ -16,9 +16,11 @@ type CardProps = {
   card?: number;
   type?: string;
   uni?: string;
+  date?: string;
 };
 
 export default function Card({
+  date='',
   id,
   title,
   name,
@@ -33,6 +35,14 @@ export default function Card({
   type,
   uni,
 }: CardProps) {
+
+  const dateObj = new Date(date);
+  const num = status?.match(/\d+/)?.[0] || "";
+  dateObj.setDate(dateObj.getDate() + Number(num)); // Increment the date by the 'increment' variable
+  const formattedDate = dateObj.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+  });
   return (
     <div>
       {card == 0 && (
@@ -92,33 +102,29 @@ export default function Card({
       )}
       {card == 2 && (
         <div className="flex w-full h-full bg-gradient-120 from-[#18A6F5] to-[#4D43D6] rounded-3xl justify-between items-center px-6">
-            <div className="flex w-full justify-between h-full py-5">
-              <div>
-                <div className=" font-bold text-lg text-white">{title}</div>
-                <div className=" text-3xl mt-2 font-light text-white">{name}</div>
-                <div className=" font-semibold text-base text-white">
-                  {type}
+          <div className="flex w-full justify-between h-full py-5">
+            <div>
+              <div className=" font-bold text-lg text-white">{title}</div>
+              <div className=" text-3xl mt-1 font-light text-white">{name}</div>
+              <div className=" font-semibold text-base text-white">{type}</div>
+              <div className=" font-semibold text-base text-white">{uni}</div>
+            </div>
+            <div>
+              <div className="flex flex-col justify-between h-full items-end gap-1 ">
+                <span className="font-bold text-lg text-white">
+                  Total Amount
+                </span>
+                <div className="text-3xl ">
+                  <span className="text-white">BDT {balance}</span>
                 </div>
-                <div className=" font-semibold text-base text-white">{uni}</div>
-              </div>
-              <div>
-                <div className="flex flex-col justify-between h-full items-end gap-1 ">
-                  <div>
-                    <span className="font-bold text-lg text-white">
-                      Total Amount
-                    </span>
-                    <div className="text-3xl ">
-                      <span className="text-white mt-2">{balance}</span>
-                    </div>
-                  </div>
-                  <div className="mb-2">
-                    <span className="text-white font-bold text-sm rounded-md bg-white/20 px-3 py-1 ">
-                      #C7456YU
-                    </span>
-                  </div>
+                <div className="mb-2">
+                  <span className="text-white font-bold text-sm rounded-md bg-white/20 px-3 py-1 ">
+                    #ULN0{id}
+                  </span>
                 </div>
               </div>
             </div>
+          </div>
         </div>
       )}
       {card == 3 && (
@@ -126,21 +132,19 @@ export default function Card({
           <div className="flex w-full justify-between h-full py-5">
             <div>
               <div className=" font-bold text-lg text-white">{title}</div>
-              <div className=" text-3xl font-light text-white">{balance}</div>
+              <div className=" text-3xl font-light text-white">{formattedDate}</div>
             </div>
             <div>
               <div className="flex flex-col justify-between h-full items-end gap-1 ">
-                <div>
                   <span className="font-bold text-lg text-white">
                     Due Amount
                   </span>
                   <div className="text-3xl ">
-                    <span className="text-white">$5,000</span>
+                    <span className="text-white">BDT {balance}</span>
                   </div>
-                </div>
                 <div className="mb-2 mt-3">
                   <span className="text-white font-bold text-sm rounded-md bg-white/20 px-3 py-1 ">
-                    #C7456YU
+                    #ULN0{id}
                   </span>
                 </div>
               </div>

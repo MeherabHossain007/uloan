@@ -191,6 +191,8 @@ export default function Dashboard() {
           mobile={data.phone}
           email={email}
           uni={data.uni}
+          unid={data.uid}
+          nid={data.nid}
           genders="male"
         />
       )}
